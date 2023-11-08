@@ -12,3 +12,7 @@ class informacion(models.Model):
     longo_en_cms = fields.Integer(string="Longo en centimetros: ")
     ancho_en_cms = fields.Integer(string="Ancho en centimetros: ")
     peso = fields.Float(digits=(6,2), default = 2.7, string="Peso en Kgs: " )
+    autorizado = fields.Boolean(string="¿Autorizado?", default=True)
+    sexo_traducido = fields.Selection([('Home', 'Hombre'), ('Muller', 'Mujer'), ('Otros', 'otros')], string="Sexo")
+
+
