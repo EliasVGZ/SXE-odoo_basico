@@ -1,5 +1,18 @@
 <odoo>
     <data>
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="suceso_list_action">
+            <field name="name">A accion de suceso</field>
+            <field name="res_model">odoo_basico.suceso</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="o_view_noncontent_smiling_face">Tes que crear o primeiro registro</p>
+            </field>
+        </record>
+
+
+        <!-- Vista que puedes ya ver de los elementos añadidos. VISTA TREE-->
         <record model="ir.ui.view" id="suceso_tree_view">
             <field name="name">suceso.tree</field>
             <field name="model">odoo_basico.suceso</field>
@@ -9,9 +22,42 @@
                     <field name="name"/>
                     <field name="descripcion"/>
                     <field name="nivel"/>
-                    <field name="data_hora"/>
                 </tree>
             </field>
         </record>
+
+
+        <!-- server action to the one above -->
+        <!--
+            <record model="ir.actions.server" id="/home/a22eliassvf/pycharm_projects/odoo_suceso.action_server">
+              <field name="name">/home/a22eliassvf/PycharmProjects/odoo_suceso server</field>
+              <field name="model_id" ref="model_/home/a22eliassvf/pycharm_projects/odoo_suceso_/home/a22eliassvf/pycharm_projects/odoo_suceso"/>
+              <field name="state">code</field>
+              <field name="code">
+                action = {
+                  "type": "ir.actions.act_window",
+                  "view_mode": "tree,form",
+                  "res_model": model._name,
+                }
+              </field>
+            </record>
+        -->
+
+        <!-- Top menu item -->
+        <!--
+            <menuitem name="/home/a22eliassvf/PycharmProjects/odoo_suceso" id="/home/a22eliassvf/pycharm_projects/odoo_suceso.menu_root"/>
+        -->
+        <!-- menu categories -->
+        <!--
+            <menuitem name="Menu 1" id="/home/a22eliassvf/pycharm_projects/odoo_suceso.menu_1" parent="/home/a22eliassvf/pycharm_projects/odoo_suceso.menu_root"/>
+            <menuitem name="Menu 2" id="/home/a22eliassvf/pycharm_projects/odoo_suceso.menu_2" parent="/home/a22eliassvf/pycharm_projects/odoo_suceso.menu_root"/>
+        -->
+        <!-- actions -->
+        <!--
+            <menuitem name="List" id="/home/a22eliassvf/pycharm_projects/odoo_suceso.menu_1_list" parent="/home/a22eliassvf/pycharm_projects/odoo_suceso.menu_1"
+                      action="/home/a22eliassvf/pycharm_projects/odoo_suceso.action_window"/>
+            <menuitem name="Server to list" id="/home/a22eliassvf/pycharm_projects/odoo_suceso" parent="/home/a22eliassvf/pycharm_projects/odoo_suceso.menu_2"
+                      action="/home/a22eliassvf/pycharm_projects/odoo_suceso.action_server"/>
+        -->
     </data>
 </odoo>
