@@ -1,5 +1,5 @@
 <odoo>
-    <data > <!-- NO SE ACTUALIZAN LOS DATOS-->
+    <data>
         <!-- actions opening views on models -->
         <record model="ir.actions.act_window" id="informacion_list_action">
             <field name="name">A accion de informacion</field>
@@ -20,8 +20,6 @@
                 </graph>
             </field>
         </record>
-
-        <!--insertar valores  ejercicio entregable.-->
 
 
         <!-- explicit list view definition. Informacion que se te pide al dar de alta. VISTA FORM-->
@@ -61,13 +59,32 @@
                             </page>
                             <page string="Binary">
                                 <group>
-
+                                    <group>
+                                        <field name="foto" widget="image"
+                                               class="oe_avatar"/> <!--PARA VER LA FOTO REDUCIDA -->
+                                        <field name="adxunto_nome" invisible="1"/>
+                                        <field name="adxunto" filename="adxunto_nome"/>
+                                    </group>
+                                    <group>
+                                        <field name="foto" widget="image"/>
+                                    </group>
                                 </group>
+
                             </page>
                             <page string="Moedas">
                                 <group>
+                                    <group>
+                                    <field name="moeda_id"/>
+                                    <field name="moeda_en_texto"/>
+                                    <field name="creador_da_moeda"/>
+                                </group>
+                                <group>
+                                    <field name="moeda_euro_id" invisible="1"/>
+                                    <field name="gasto_en_euros"/>
+                                </group>
 
                                 </group>
+
                             </page>
                             <page string="Data e Hora">
                                 <group>

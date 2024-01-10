@@ -12,7 +12,7 @@
         </record>
 
 
-        <!-- Vista que puedes ya ver de los elementos añadidos. VISTA TREE-->
+        <!-- Vista que puedes ver de los elementos añadidos. VISTA TREE-->
         <record model="ir.ui.view" id="suceso_tree_view">
             <field name="name">suceso.tree</field>
             <field name="model">odoo_basico.suceso</field>
