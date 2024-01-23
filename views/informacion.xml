@@ -129,6 +129,7 @@
                     <field name="densidade"/>
                     <field name="autorizado"/>
                     <field name="sexo_traducido"/>
+                    <field name="moeda_id"/>
 
                 </tree>
             </field>

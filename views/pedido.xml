@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="pedido_list_action">
+            <field name="name">A accion de pedido</field>
+            <field name="res_model">odoo_basico.pedido</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_noncontent_smiling_face">Tes que crear o primeiro pedido</p>
+            </field>
+        </record>
+
+
+        <!-- Vista que puedes ver de los elementos añadidos. VISTA TREE-->
+        <record model="ir.ui.view" id="pedido_tree_view">
+            <field name="name">pedido.tree</field>
+            <field name="model">odoo_basico.pedido</field>
+            <field name="arch" type="xml">
+                <tree string="Formulario Pedido">
+                    <field name="name"/>
+                    <field name="descripcion"/>
+                    <field name="lineapedido_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="pedido_form_view">
+            <field name="name">pedido.form</field>
+            <field name="model">odoo_basico.pedido</field>
+            <field name="arch" type="xml">
+                <form string="Formulario Pedido">
+                    <group>
+                        <field name="name"/>
+                        <field name="descripcion"/>
+                        <separator string="Visualizar e engadir"/>
+                        <field name="lineapedido_ids"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <!--        <separator string="Visualizar e engadir"/>-->
+        <!--        <field name="lineapedido_ids"/>-->
+        <!--        Se quixeramos que non se poideran editar as lineapedido:-->
+        <!--        <separator string="Só visualizar"/>-->
+        <!--        <field name="lineapedido_ids" readonly="1"/>-->
+
+    </data>
+</odoo>
