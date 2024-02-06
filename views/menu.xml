@@ -4,6 +4,6 @@
         <menuitem id="menu_informacion" name="Menu Nivel 1. Información" parent="main_odoo_basico" action="informacion_list_action" sequence="8"/><!--item INFORMACION-->
         <menuitem id="menu_suceso" name="Menu Nivel 1. Suceso" parent="main_odoo_basico" action="suceso_list_action" sequence="9"/><!--item suceso-->
         <menuitem id="menu_pedido" name="Menu Nivel 2. Pedido" parent="main_odoo_basico" action="pedido_list_action" sequence="9"/>
-        <menuitem id="menu_linea_pedido" name="Menu Nivel 3. LInea Pedido" parent="main_odoo_basico" action="linea_pedido_list_action" sequence="9"/>
+<!--        <menuitem id="menu_linea_pedido" name="Menu Nivel 3. LInea Pedido" parent="main_odoo_basico" action="linea_pedido_list_action" sequence="9"/>-->
     </data>
 </odoo>

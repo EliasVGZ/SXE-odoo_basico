@@ -1,8 +1,9 @@
 from odoo import models, fields, api
 
-class suceso(models.Model):
+class linea_pedido(models.Model):
     _name = 'odoo_basico.linea_pedido'
     _description = 'Exemplo Linea Pedido'
+    _order = "name asc"
 
 
     name = fields.Char(required=True, size=20, string="Linea Pedido")

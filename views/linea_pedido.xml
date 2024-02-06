@@ -16,13 +16,12 @@
             <field name="model">odoo_basico.linea_pedido</field>
             <field name="arch" type="xml">
                 <tree string="Árbol de Líneas de Pedido">
-                    <field name="name"/>
+                    <!--                    <field name="name"/>-->
                     <field name="descripcion"/>
-<!--                    <field name="pedido_id"/>-->
+                    <!--                    <field name="pedido_id"/>-->
                 </tree>
             </field>
         </record>
-
 
 
         <record model="ir.ui.view" id="linea_pedido_form_view">
@@ -32,7 +31,7 @@
                 <tree>
                     <field name="name"/>
                     <field name="descripcion"/>
-<!--                    <field name="pedido_id"/>-->
+                    <!--                    <field name="pedido_id"/>-->
                 </tree>
             </field>
         </record>

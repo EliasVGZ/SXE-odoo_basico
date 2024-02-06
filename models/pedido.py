@@ -1,8 +1,11 @@
 from odoo import models, fields, api
 
-class suceso(models.Model):
+class pedido(models.Model):
     _name = 'odoo_basico.pedido'
     _description = 'Exemplo Pedido'
+    _sql_constraints = [('nomeUnico', 'unique(name)',
+                         'O identificador de Pedido xa existe na base de datos')]  # RESTRICCION SQL, en este caso por el nombre, no pueden repetir el titulo
+    _order = "name asc" #Se ordenada descendente
 
 
     name = fields.Char(required=True, size=20, string="Pedido")

@@ -19,7 +19,7 @@
             <field name="arch" type="xml">
                 <tree string="Formulario Pedido">
                     <field name="name"/>
-                    <field name="descripcion"/>
+                    <!--                    <field name="descripcion"/>-->
                     <field name="lineapedido_ids"/>
                 </tree>
             </field>
@@ -30,12 +30,21 @@
             <field name="model">odoo_basico.pedido</field>
             <field name="arch" type="xml">
                 <form string="Formulario Pedido">
-                    <group>
-                        <field name="name"/>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+
                         <field name="descripcion"/>
-                        <separator string="Visualizar e engadir"/>
+
+                        <separator string="Visualizar e engadir, lo usamos para ver y añadir una linea pedido"/>
                         <field name="lineapedido_ids"/>
-                    </group>
+
+<!--                        <separator string="Só visualizar"/>-->
+<!--                        <field name="lineapedido_ids" readonly="1"/>-->
+
+                    </sheet>
+
                 </form>
             </field>
         </record>
