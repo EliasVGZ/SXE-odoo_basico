@@ -32,6 +32,8 @@
                     <field name="name"/>
                     <field name="descripcion"/>
                     <!--                    <field name="pedido_id"/>-->
+                    <field name="informacion_ids"/>
+
                 </tree>
             </field>
         </record>
