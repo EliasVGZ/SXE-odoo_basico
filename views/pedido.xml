@@ -30,6 +30,15 @@
             <field name="model">odoo_basico.pedido</field>
             <field name="arch" type="xml">
                 <form string="Formulario Pedido">
+                    <header>
+                        <button name="actualizadorSexo" type="object"
+                                string="Actualiza o campo Sexo do modelo información"/>
+                        <button name="creaRexistroInformacion" type="object"
+                                string="Crea un nuevo registro de informacion DESDE PEDIDOS"/>
+                        <button name="actualizaRexistroInformacion" type="object"
+                                string="Actualiza un registro de informacion creado recientemente desde PEDIDO"/>
+                    </header>
+
                     <sheet>
                         <group>
                             <field name="name"/>
@@ -40,8 +49,8 @@
                         <separator string="Visualizar e engadir, lo usamos para ver y añadir una linea pedido"/>
                         <field name="lineapedido_ids"/>
 
-<!--                        <separator string="Só visualizar"/>-->
-<!--                        <field name="lineapedido_ids" readonly="1"/>-->
+                        <!--                        <separator string="Só visualizar"/>-->
+                        <!--                        <field name="lineapedido_ids" readonly="1"/>-->
 
                     </sheet>
 

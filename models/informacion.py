@@ -23,6 +23,8 @@ class informacion(models.Model):
     adxunto_nome = fields.Char(string="Nome Adxunto")
     adxunto = fields.Binary(string="Arquivo adxunto")
 
+
+
     # Os campos Many2one crean un campo na BD
     moeda_id = fields.Many2one('res.currency', string="Moneda ELIAS", domain="[('position','=','after')]")
     # con domain, filtramos os valores mostrados. Pode ser mediante unha constante (vai entre comillas) ou unha variable
@@ -41,6 +43,13 @@ class informacion(models.Model):
 #PARA SABER QUIEN ES EL USUARIO CREADOR
     creador_da_moeda = fields.Char(related="moeda_id.create_uid.login",
                                    string="Usuario creador da moeda", store=True)
+
+
+
+
+    #TODO CAMBIAR A HOMBRE CUANDO AUTORIZADO ESTE A FALSE
+    def _cambia_campo_sexo(self, rexistro):
+        rexistro.sexo_traducido = "Hombre"
 
 
     @api.depends('alto_en_cms', 'longo_en_cms', 'ancho_en_cms')
