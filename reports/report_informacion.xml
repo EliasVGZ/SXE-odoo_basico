@@ -45,7 +45,8 @@
                         <thead>
                             <tr class="bg-primary">
                                 <th class="text-left">Titulo(name)</th>
-                                <th class="text-left">Peso</th>
+                                <th class="text-left">Alto en centimetros</th>
+                                <th class="text-left">Ancho en centimetros</th>
                                 <th class="text-left">Autorizado</th>
                                 <th class="text-left">Sexo</th>
                             </tr>
@@ -57,12 +58,16 @@
                                     <td class="text-left">
                                         <h5><span t-field="o.name" /></h5>
                                     </td>
-                                    <td class="text-left">
-                                        <span t-field="o.peso" />
-                                        <t t-if="o.peso &gt; 3">
-                                            <t t-set="suma_peso" t-value="suma_peso + o.peso" />
-                                        </t>
+                                    <td class="text-center">
+                                        <span t-field="o.alto_en_cms" />
+<!--                                        <t t-if="o.peso &gt; 3">-->
+<!--                                            <t t-set="suma_peso" t-value="suma_peso + o.peso" />-->
+<!--                                        </t>-->
                                     </td>
+                                    <td class="text-center">
+                                        <span t-field="o.ancho_en_cms" />
+                                    </td>
+
                                     <td class="text-left">
                                         <t t-if="o.autorizado == True">
                                             <span>SI</span>
@@ -76,12 +81,43 @@
                                     </td>
                                 </tr>
                             </t>
-                            <td class="text-left"><span>Suma de pesos maior a 3 </span></td>
-                            <td class="text-left"><span t-esc="suma_peso"/></td>
-                            <td class="text-left"><span>Total Pesos: </span></td>
-                            <td class="text-left"><span t-esc="sum([x.peso for x in docs])"/> </td>
+<!--                            <td class="text-left"><span>Suma de pesos maior a 3 </span></td>-->
+<!--                            <td class="text-left"><span t-esc="suma_peso"/></td>-->
+<!--                            <td class="text-left"><span>Total Pesos: </span></td>-->
+<!--                            <td class="text-left"><span t-esc="sum([x.peso for x in docs])"/> </td>-->
                         </tbody>
                         </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_foto_informacion"
+            string="Listaxe das fotos en Información"
+            model="odoo_basico.informacion" report_type="qweb-pdf"
+            name="odoo_basico.report_foto_informacion_template"
+            paperformat="paperformat_euro_landscape"/>
+    <template id="report_foto_informacion_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="container">
+                        <t t-foreach="docs" t-as="o">
+                            <t t-if="o.foto">
+                                <div style="page-break-after:always">
+                                    <div class="row bg-primary" style="margin: auto; width: 50%; padding: 15px;padding-left: 230px;">
+                                        <h3>Descripción</h3>
+                                    </div>
+                                    <div  class="row" style="margin: auto; width: 50%; padding: 10px;">
+                                        <h5><span t-field="o.descripcion" /></h5>
+                                    </div>
+                                    <div  class="row"  style="margin: auto; width: 55%;">
+                                        <img t-attf-src="data:image/*;base64,{{o.foto}} "  style="max-height: 500px;max-width: 500px;"/>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
                     </div>
                 </div>
             </t>

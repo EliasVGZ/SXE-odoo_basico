@@ -29,6 +29,7 @@
         'views/suceso.xml',
         'views/templates.xml',
         'reports/report_informacion.xml',
+        'reports/report_header.xml',
         'views/menu.xml',
         'views/pedido.xml',
         'views/linea_pedido.xml',
