@@ -2,6 +2,7 @@ import os
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from odoo.tools.safe_eval import pytz
 
 
 class informacion(models.Model):
@@ -24,6 +25,21 @@ class informacion(models.Model):
     foto = fields.Binary(string='Foto')
     adxunto_nome = fields.Char(string="Nome Adxunto")
     adxunto = fields.Binary(string="Arquivo adxunto")
+    data = fields.Date(string="Data", default=lambda self: fields.Date.today())
+    data_hora = fields.Datetime(string="Data e Hora", default=lambda self: fields.Datetime.now())
+    hora_utc = fields.Char(compute="_hora_utc", string="Hora UTC", size=15, store=True)
+    hora_actual = fields.Char(compute="_hora_actual", string="Hora Actual", size=15, store=True)
+    hora_timezone_usuario = fields.Char(compute="_hora_timezone_usuario", string="Hora Timezone do Usuario", size=15,
+                                        store=True)
+
+
+    # def convirte_data_hora_de_utc_a_timezone_do_usuario(self,
+    #                                                     data_hora_utc_object):  # recibe a data hora en formato object
+    #     usuario_timezone = pytz.timezone(
+    #         self.env.user.tz or 'UTC')  # obter a zona horaria do usuario. Ollo!!! nas preferencias do usuario ten que estar ben configurada a zona horaria
+    #     return pytz.UTC.localize(data_hora_utc_object).astimezone(
+    #         usuario_timezone)  # hora co horario do usuario en formato object
+    #     # para usar  pytz temos que facer  import pytz
 
 
 
@@ -42,9 +58,54 @@ class informacion(models.Model):
 
 
 
-#PARA SABER QUIEN ES EL USUARIO CREADOR
+    #PARA SABER QUIEN ES EL USUARIO CREADOR
     creador_da_moeda = fields.Char(related="moeda_id.create_uid.login",
                                    string="Usuario creador da moeda", store=True)
+
+    @api.depends('data_hora')
+    def _hora_utc(self):
+        for rexistro in self:  # A hora se almacena na BD en horario UTC (2 horas menos no verán, 1 hora menos no inverno)
+            rexistro.hora_utc = rexistro.data_hora.strftime("%H:%M:%S")
+
+    def actualiza_hora_actual_UTC(
+            self):  # Esta función é chamada dende un boton de informacion.xml e dende _hora_actual
+        for rexistro in self:
+            rexistro.hora_actual = fields.Datetime.now().strftime("%H:%M:%S")
+        # Grava a hora en UTC, se quixesemos poderiamos usar a función  _convirte_data_hora_de_utc_a_timezone_do_usuario
+
+    @api.depends('data_hora')
+    def _hora_actual(self):
+        for rexistro in self:
+            rexistro.actualiza_hora_actual_UTC()
+
+    @api.depends('data_hora')
+    def _hora_timezone_usuario(self):
+        for rexistro in self:
+            rexistro.actualiza_hora_timezone_usuario_dende_boton_e_apidepends()
+
+    def actualiza_hora_timezone_usuario_dende_boton_e_apidepends(self):  # Esta función é chamada dende un boton de informacion.xml e dende @api.depends _hora_timezone_usuario
+        self.actualiza_hora_timezone_usuario(self)  # leva self como parametro por que actualiza_hora_timezone_usuario ten 2 parametros
+        # porque usamos tamén actualiza_hora_timezone_usuario dende outro modelo (pedido.py) e lle pasamos como parámetro o obxeto_rexistro
+
+        # Esta función será chamada dende a función actualiza_hora_timezone_usuario_dende_boton_e_apidepends e
+        #  dende pedido.py (Cando insertamos os valores do template self.env.user.tz non ten o timezone do usuario por iso se carga coa hora UTC,
+        #  o botón en pedido.py é para actualizar todos os rexistros masivamente dende outro modelo)
+    def actualiza_hora_timezone_usuario(self, obxeto_rexistro):
+        obxeto_rexistro.hora_timezone_usuario = self.convirte_data_hora_de_utc_a_timezone_do_usuario(
+            obxeto_rexistro.data_hora).strftime(
+            "%H:%M:%S")  # Convertimos a hora de UTC a hora do timezone do usuario
+
+    @api.depends('data_hora')
+    def _hora_timezone_usuario(self):
+        for rexistro in self:
+            rexistro.actualiza_hora_timezone_usuario_dende_boton_e_apidepends()
+
+    def convirte_data_hora_de_utc_a_timezone_do_usuario(self,data_hora_utc_object):  # recibe a data hora en formato object
+        usuario_timezone = pytz.timezone(
+            self.env.user.tz or 'UTC')  # obter a zona horaria do usuario. Ollo!!! nas preferencias do usuario ten que estar ben configurada a zona horaria
+        return pytz.UTC.localize(data_hora_utc_object).astimezone(
+            usuario_timezone)  # hora co horario do usuario en formato object
+        # para usar  pytz temos que facer  import pytz
 
 
 

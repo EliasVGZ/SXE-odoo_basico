@@ -33,6 +33,8 @@
                     <header>
                         <button name="envio_email" type="object" string="Enviar Email"/>
                         <button name="ver_contexto" type="object" string="Ver Contexto"/>
+                        <button name="actualiza_hora_actual_UTC" type="object" string="Actualiza hora actual a UTC"/>
+                        <button name="actualiza_hora_timezone_usuario_dende_boton_e_apidepends" type="object" string="Actualiza Hora a Timezone do Usuario"  class="oe_highlight"/>
                     </header>
                     <sheet>
                         <group>
@@ -78,21 +80,25 @@
                             <page string="Moedas">
                                 <group>
                                     <group>
-                                    <field name="moeda_id"/>
-                                    <field name="moeda_en_texto"/>
-                                    <field name="creador_da_moeda"/>
-                                </group>
-                                <group>
-                                    <field name="moeda_euro_id" invisible="1"/>
-                                    <field name="gasto_en_euros"/>
-                                </group>
+                                        <field name="moeda_id"/>
+                                        <field name="moeda_en_texto"/>
+                                        <field name="creador_da_moeda"/>
+                                    </group>
+                                    <group>
+                                        <field name="moeda_euro_id" invisible="1"/>
+                                        <field name="gasto_en_euros"/>
+                                    </group>
 
                                 </group>
 
                             </page>
                             <page string="Data e Hora">
                                 <group>
-
+                                    <field name="data"/>
+                                    <field name="data_hora"/>
+                                    <field name="hora_utc"/>
+                                    <field name="hora_actual"/>
+                                    <field name="hora_timezone_usuario"/>
                                 </group>
                             </page>
                         </notebook>
@@ -134,6 +140,11 @@
                     <field name="autorizado"/>
                     <field name="sexo_traducido"/>
                     <field name="moeda_id"/>
+                    <field name="data"/>
+                    <field name="data_hora"/>
+                    <field name="hora_utc"/>
+                    <field name="hora_actual"/>
+                    <field name="hora_timezone_usuario"/>
 
                 </tree>
             </field>

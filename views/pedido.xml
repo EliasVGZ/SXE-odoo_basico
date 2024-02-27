@@ -37,6 +37,8 @@
                                 string="Crea un nuevo registro de informacion DESDE PEDIDOS"/>
                         <button name="actualizaRexistroInformacion" type="object"
                                 string="Actualiza un registro de informacion creado recientemente desde PEDIDO"/>
+                        <button name="actualizadorHoraTimezone" type="object"
+                                string="Actualiza Hora TIme Zone"/>
                     </header>
 
                     <sheet>
