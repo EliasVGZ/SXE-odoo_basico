@@ -33,6 +33,7 @@
         'views/menu.xml',
         'views/pedido.xml',
         'views/linea_pedido.xml',
+        'views/persoa.xml',
         'security/ir.model.access.csv',
 
     ],

@@ -13,6 +13,12 @@ class pedido(models.Model):
     # Os campos One2many Non se almacenan na BD
     lineapedido_ids = fields.One2many("odoo_basico.linea_pedido", 'pedido_id')
 
+    ##Añadimos relacion con la clase Persona, a que a su vez hereda de res_partner
+    persoa_id = fields.Many2one('res.partner', ondelete='set null', domain="[('visible','=','True')]", index=True,
+                                string="Persoa")
+    # persoa_id = fields.Many2one('res.partner', ondelete='set null', domain="[]", index=True,
+    #                             string="Persoa")
+
 
     #TODO Actualiza el campo de sexo cuando el autorizado está a false
     def actualizadorSexo(self):
